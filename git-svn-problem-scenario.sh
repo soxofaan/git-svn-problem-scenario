@@ -9,6 +9,7 @@ rm -fr svn-repo svn-wc git-wc
 # Get absulute path of current working directory.
 root=$(pwd)
 
+###############################################################
 # Set up initial SVN repo.
 svnadmin create svn-repo
 svn checkout file://$root/svn-repo svn-wc
@@ -26,6 +27,7 @@ svn commit -m "Created readme.txt"
 svn copy trunk branches/branch
 svn commit -m "Created SVN branch"
 
+##############################################################
 # Git-svn clone/checkout.
 cd $root
 git svn clone -s --prefix=svn/ file://$root/svn-repo git-wc
@@ -57,18 +59,20 @@ git svn dcommit
 git checkout master
 git merge svn-branch
 
-# Work in master.
+# Work a bit more in master.
 git checkout master
 echo "more stuff from master" > morefrommaster.txt
 git add morefrommaster.txt
 git commit -m "more stuff from master"
 
+
+########################################################
 # Try to commit from master to SVN trunk
 # but this fails: commits to SVN branch instead.
 git checkout master
 git svn dcommit
 
-# Check SVN wc.
+# Also check SVN working copy.
 cd $root/svn-wc
 svn update
 
