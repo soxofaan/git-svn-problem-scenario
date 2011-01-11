@@ -57,7 +57,7 @@ git svn dcommit
 
 # Merge branch in master.
 git checkout master
-git merge svn-branch
+git merge --no-ff svn-branch
 
 # Work a bit more in master.
 git checkout master
